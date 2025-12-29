@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>STAZ — Stars & Premium</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: #e5e7eb;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #38bdf8;
+    }
+    .lang-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .lang-buttons button {
+      background: #38bdf8;
+      border: none;
+      padding: 10px 16px;
+      margin: 0 6px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .lang-buttons button:hover {
+      background: #0ea5e9;
+    }
+    .page {
+      display: none;
+      background: #020617;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    }
+    .page.active {
+      display: block;
+    }
+    ul, ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .box {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .info {
+      background: #0f766e;
+      color: #ecfeff;
+    }
+    .warn {
+      background: #7c2d12;
+      color: #ffedd5;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #1e293b;
+      font-size: 14px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="lang-buttons">
+    <button onclick="showPage('ru')">Русский</button>
+    <button onclick="showPage('uz')">O‘zbekcha</button>
+  </div>
+
+  <!-- 🇷🇺 РУССКАЯ ВЕРСИЯ -->
+  <div id="ru" class="page active">
+    <h1>⭐ STAZ — Stars & 💎 Telegram Premium</h1>
+
+    <h2>⚙️ Как это работает</h2>
+    <ol>
+      <li>Вы запускаете бота и выбираете нужную услугу.</li>
+      <li>Указываете количество ⭐ Stars или срок 💎 Premium.</li>
+      <li>Оплачиваете удобным способом.</li>
+      <li>Заказ обрабатывается автоматически или оператором.</li>
+      <li>Stars или Premium зачисляются на ваш аккаунт.</li>
+    </ol>
+
+    <div class="box info">
+      ⏱ Время выполнения — от нескольких минут до 24 часов.
+    </div>
+
+    <h2>📜 Правила</h2>
+    <ul>
+      <li>✔️ Указывайте корректный Telegram username или ID.</li>
+      <li>✔️ После подтверждения оплаты отмена невозможна.</li>
+      <li>✔️ Возврат средств возможен только при технической ошибке.</li>
+      <li>✔️ Запрещено использование бота в мошеннических целях.</li>
+      <li>✔️ Администрация вправе отказать в обслуживании при нарушении правил.</li>
+    </ul>
+
+    <div class="box warn">
+      ❗ Бот не является официальным сервисом Telegram.
+    </div>
+
+    <div class="footer">
+      📞 Поддержка: <a href="https://t.me/stazsupport">@stazsupport</a><br>
+      📢 Канал: <a href="https://t.me/Stazch">@Stazch</a>
+    </div>
+  </div>
+
+  <!-- 🇺🇿 UZBEKCHA VERSIYA -->
+  <div id="uz" class="page">
+    <h1>⭐ STAZ — Stars & 💎 Telegram Premium</h1>
+
+    <h2>⚙️ Qanday ishlaydi</h2>
+    <ol>
+      <li>Botni ishga tushirib, kerakli xizmatni tanlaysiz.</li>
+      <li>⭐ Stars miqdori yoki 💎 Premium muddatini kiritasiz.</li>
+      <li>Qulay usul orqali to‘lov qilasiz.</li>
+      <li>Buyurtma avtomatik yoki operator tomonidan tekshiriladi.</li>
+      <li>Xizmat Telegram akkauntingizga yetkaziladi.</li>
+    </ol>
+
+    <div class="box info">
+      ⏱ Bajarilish vaqti — bir necha daqiqadan 24 soatgacha.
+    </div>
+
+    <h2>📜 Qoidalar</h2>
+    <ul>
+      <li>✔️ Telegram username yoki ID to‘g‘ri kiritilishi shart.</li>
+      <li>✔️ To‘lov tasdiqlangandan so‘ng bekor qilib bo‘lmaydi.</li>
+      <li>✔️ Pul faqat texnik xatolik bo‘lsa qaytariladi.</li>
+      <li>✔️ Botdan firibgarlik maqsadida foydalanish taqiqlanadi.</li>
+      <li>✔️ Qoidalar buzilganda xizmat ko‘rsatish rad etilishi mumkin.</li>
+    </ul>
+
+    <div class="box warn">
+      ❗ Ushbu bot Telegram’ning rasmiy xizmati emas.
+    </div>
+
+    <div class="footer">
+      📞 Qo‘llab-quvvatlash: <a href="https://t.me/stazsupport">@stazsupport</a><br>
+      📢 Kanal: <a href="https://t.me/Stazch">@Stazch</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
