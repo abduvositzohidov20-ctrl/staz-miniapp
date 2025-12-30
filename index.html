@@ -1,203 +1,228 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STAZ — Stars & Premium</title>
-  <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body {
-      font-family: 'Arial', sans-serif;
-      background: radial-gradient(#020617 0%, #0f172a 100%);
-      color: #e5e7eb;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAZ — Stars & Premium</title>
 
-    /* Плавающие звездочки */
-    .star {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: #fff;
-      border-radius: 50%;
-      animation: floatStar linear infinite;
-      opacity: 0.8;
-    }
+<link rel="stylesheet" href="style.css">
 
-    @keyframes floatStar {
-      0% { transform: translateY(0) translateX(0); opacity:0.6; }
-      50% { opacity:1; }
-      100% { transform: translateY(-1000px) translateX(200px); opacity:0; }
-    }
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 16px;
-      padding: 30px 25px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:radial-gradient(#020617 0%, #0f172a 100%);
+  color:#e5e7eb;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-x:hidden;
+}
 
-    h1, h2 {
-      color: #38bdf8;
-      margin-top: 0;
-      transition: all 0.3s ease;
-    }
-    h1 { text-align: center; font-size: 2rem; }
-    h2 { margin-bottom: 10px; font-size: 1.3rem; }
+/* ⭐ Звезды */
+.star{
+  position:absolute;
+  width:5px;
+  height:5px;
+  background:#fff;
+  border-radius:50%;
+  animation:floatStar linear infinite;
+  opacity:.7;
+}
+@keyframes floatStar{
+  from{transform:translateY(0);opacity:.6}
+  to{transform:translateY(-1000px);opacity:0}
+}
 
-    .lang-buttons {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .lang-buttons button {
-      background: #38bdf8;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 8px;
-      border-radius: 12px;
-      font-weight: bold;
-      color: #020617;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    .lang-buttons button:hover {
-      transform: scale(1.1);
-      background: #0ea5e9;
-      color: #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
+.container{
+  max-width:900px;
+  width:100%;
+  background:rgba(15,23,42,.95);
+  border-radius:18px;
+  padding:30px 25px;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  z-index:1;
+}
 
-    .page { display: none; opacity:0; animation: fadeIn 0.5s forwards; }
-    .page.active { display: block; opacity:1; }
+h1,h2{color:#38bdf8;}
+h1{text-align:center;margin-bottom:15px;}
 
-    ul, ol { padding-left: 20px; }
-    li { margin-bottom: 12px; }
+.lang-buttons{text-align:center;margin-bottom:20px;}
+.lang-buttons button{
+  background:#38bdf8;
+  border:none;
+  padding:10px 18px;
+  margin:0 6px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+.lang-buttons button:hover{
+  background:#0ea5e9;
+  color:#fff;
+  transform:scale(1.1);
+}
 
-    .box {
-      margin-top: 20px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      font-size: 15px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .info { background: #0f766e; color: #ecfeff; border-left: 6px solid #14b8a6; animation: pulse 2s infinite; }
-    .warn { background: #7c2d12; color: #ffedd5; border-left: 6px solid #f87171; animation: pulse 2s infinite; }
+/* 🔘 Кнопки */
+.actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:25px 0;
+}
+.action-btn{
+  padding:14px 26px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  color:#020617;
+  font-weight:bold;
+  text-decoration:none;
+  transition:.3s;
+  box-shadow:0 0 20px rgba(56,189,248,.5);
+}
+.action-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 35px rgba(56,189,248,.9);
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
+/* 🤖 Возможности */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.feature{
+  background:#020617;
+  padding:18px;
+  border-radius:16px;
+  transition:.3s;
+  animation:fadeIn .5s ease;
+}
+.feature:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+.feature span{
+  font-size:26px;
+  display:block;
+  margin-bottom:8px;
+}
 
-    a { color: #38bdf8; text-decoration: none; font-weight: bold; transition: color 0.2s; }
-    a:hover { color: #0ea5e9; }
+/* Блоки */
+.box{
+  margin-top:20px;
+  padding:16px;
+  border-radius:14px;
+}
+.info{background:#0f766e;}
+.warn{background:#7c2d12;}
 
-    .footer { margin-top: 30px; padding-top: 15px; border-top: 1px solid #1e293b; font-size: 14px; text-align:center; }
+.footer{
+  margin-top:30px;
+  text-align:center;
+  font-size:14px;
+}
 
-    @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+.page{display:none;animation:fadeIn .4s forwards;}
+.page.active{display:block;}
 
-    @media (max-width: 600px) {
-      .container { padding: 20px 15px; }
-      h1 { font-size: 1.6rem; }
-      h2 { font-size: 1.1rem; }
-      .lang-buttons button { padding: 8px 14px; margin: 4px; font-size: 14px; }
-      .box { font-size: 14px; padding: 14px 16px; }
-    }
-  </style>
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  h1{font-size:1.6rem;}
+}
+a{color:#38bdf8;font-weight:bold;}
+</style>
 </head>
+
 <body>
 
 <div class="container">
 
-  <div class="lang-buttons">
-    <button onclick="showPage('ru')">Русский</button>
-    <button onclick="showPage('uz')">O‘zbekcha</button>
-  </div>
+<div class="lang-buttons">
+  <button onclick="showPage('ru')">Русский</button>
+  <button onclick="showPage('uz')">O‘zbekcha</button>
+</div>
 
-  <div id="ru" class="page active">
-    <h1>⭐ STAZ — Stars & 💎 Telegram Premium</h1>
-    <h2>⚙️ Как это работает</h2>
-    <ol>
-      <li>Вы запускаете бота и выбираете нужную услугу.</li>
-      <li>Указываете количество ⭐ Stars или срок 💎 Premium.</li>
-      <li>Оплачиваете удобным способом.</li>
-      <li>Заказ обрабатывается автоматически или оператором.</li>
-      <li>Stars или Premium зачисляются на ваш аккаунт.</li>
-    </ol>
-    <div class="box info">⏱ Время выполнения — от нескольких минут до 24 часов.</div>
-    <h2>📜 Правила</h2>
-    <ul>
-      <li>✔️ Указывайте корректный Telegram username или ID.</li>
-      <li>✔️ После подтверждения оплаты отмена невозможна.</li>
-      <li>✔️ Возврат средств возможен только при технической ошибке.</li>
-      <li>✔️ Запрещено использование бота в мошеннических целях.</li>
-      <li>✔️ Администрация вправе отказать в обслуживании при нарушении правил.</li>
-    </ul>
-    <div class="box warn">❗ Бот не является официальным сервисом Telegram.</div>
-    <div class="footer">
-      📞 Поддержка: <a href="https://t.me/stazsupport">@stazsupport</a><br>
-      📢 Канал: <a href="https://t.me/Stazch">@Stazch</a>
-    </div>
-  </div>
+<!-- 🇷🇺 RU -->
+<div id="ru" class="page active">
+<h1>⭐ STAZ — Stars & 💎 Premium</h1>
 
-  <div id="uz" class="page">
-    <h1>⭐ STAZ — Stars & 💎 Telegram Premium</h1>
-    <h2>⚙️ Qanday ishlaydi</h2>
-    <ol>
-      <li>Botni ishga tushirib, kerakli xizmatni tanlaysiz.</li>
-      <li>⭐ Stars miqdori yoki 💎 Premium muddatini kiritasiz.</li>
-      <li>Qulay usul orqali to‘lov qilasiz.</li>
-      <li>Buyurtma avtomatik yoki operator tomonidan tekshiriladi.</li>
-      <li>Xizmat Telegram akkauntingizga yetkaziladi.</li>
-    </ol>
-    <div class="box info">⏱ Bajarilish vaqti — bir necha daqiqadan 24 soatgacha.</div>
-    <h2>📜 Qoidalar</h2>
-    <ul>
-      <li>✔️ Telegram username yoki ID to‘g‘ri kiritilishi shart.</li>
-      <li>✔️ To‘lov tasdiqlangandan so‘ng bekor qilib bo‘lmaydi.</li>
-      <li>✔️ Pul faqat texnik xatolik bo‘lsa qaytariladi.</li>
-      <li>✔️ Botdan firibgarlik maqsadida foydalanish taqiqlanadi.</li>
-      <li>✔️ Qoidalar buzilganda xizmat ko‘rsatish rad etilishi mumkin.</li>
-    </ul>
-    <div class="box warn">❗ Ushbu bot Telegram’ning rasmiy xizmati emas.</div>
-    <div class="footer">
-      📞 Qo‘llab-quvvatlash: <a href="https://t.me/stazsupport">@stazsupport</a><br>
-      📢 Kanal: <a href="https://t.me/Stazch">@Stazch</a>
-    </div>
-  </div>
+<div class="actions">
+<a class="action-btn" href="https://t.me/stazzbot">🚀 Открыть бота</a>
+<a class="action-btn" href="https://t.me/stazzbot">⭐ Купить Stars</a>
+<a class="action-btn" href="https://t.me/stazzbot">💎 Premium</a>
+</div>
+
+
+<h3>🤖 Что умеет бот</h3>
+<div class="features">
+<div class="feature"><span>⭐</span>Продажа Telegram Stars</div>
+<div class="feature"><span>💎</span>Оформление Telegram Premium</div>
+<div class="feature"><span>⚡</span>Быстрая автоматическая обработка</div>
+<div class="feature"><span>🔔 </span>Получение уведомлений о новых акциях</div>
+<div class="feature"><span>🔐</span>Безопасные платежи</div>
+<div class="feature"><span>📞</span>Поддержка оператора</div>
+</div>
+
+
+<div class="footer">
+📞 <a href="https://t.me/stazsupport">@stazsupport</a> |
+📢 <a href="https://t.me/Stazch">@Stazch</a>
+</div>
+</div>
+
+<!-- 🇺🇿 UZ -->
+<div id="uz" class="page">
+<h1>⭐ STAZ — Stars & 💎 Premium</h1>
+
+<div class="actions">
+<a class="action-btn" href="https://t.me/stazzbot">🚀 Botni ochish</a>
+<a class="action-btn" href="https://t.me/stazzbot">⭐ Stars sotib olish</a>
+<a class="action-btn" href="https://t.me/stazzbot">💎 Premium</a>
+</div>
+
+<h2>🤖 Bot imkoniyatlari</h2>
+<div class="features">
+<div class="feature"><span>⭐</span>Telegram Stars sotib olish</div>
+<div class="feature"><span>💎</span>Telegram Premium olish</div>
+<div class="feature"><span>⚡</span>Tezkor avtomatik ishlov</div>
+<div class="feature"><span>🔔</span>Tezkor aksiyalar xaqida yangliklar</div>
+<div class="feature"><span>🔐</span>Xavfsiz to‘lovlar</div>
+<div class="feature"><span>📞</span>Operator yordami</div>
+</div>
+
+
+<div class="footer">
+📞 <a href="https://t.me/stazsupport">@stazsupport</a> |
+📢 <a href="https://t.me/Stazch">@Stazch</a>
+</div>
+</div>
 
 </div>
 
 <script>
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-
-  // Генерация звездочек
-  for(let i=0; i<60; i++){
-    let star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = Math.random()*100 + 'vw';
-    star.style.top = Math.random()*100 + 'vh';
-    star.style.width = star.style.height = Math.random()*3 + 2 + 'px';
-    star.style.animationDuration = (5 + Math.random()*10) + 's';
-    document.body.appendChild(star);
-  }
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+for(let i=0;i<60;i++){
+  let s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  s.style.animationDuration=(5+Math.random()*10)+'s';
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
 </html>
-
